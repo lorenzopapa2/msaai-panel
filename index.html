@@ -78,6 +78,10 @@ footer{margin-top:34px;font-size:12px;color:var(--sub);text-align:center;line-he
     <h2>🚨 必办 · 截止在即</h2>
     <div class="card urgent" id="urgent"></div>
   </section>
+  <section id="sec-notices" hidden>
+    <h2>🔔 最新通知 <span id="notice-count" style="color:var(--sub);letter-spacing:0"></span></h2>
+    <div class="card" id="notices"></div>
+  </section>
   <section><h2>今天</h2><div class="card" id="today"></div></section>
   <section><h2>明天 <span id="tmr-date" style="color:var(--sub);letter-spacing:0"></span></h2><div class="card" id="tomorrow"></div></section>
   <section><h2>未来 7 天</h2><div class="card" id="week"></div></section>
@@ -90,21 +94,25 @@ footer{margin-top:34px;font-size:12px;color:var(--sub);text-align:center;line-he
         <tbody id="timetable"></tbody>
       </table>
     </div>
-    <p class="note">⚠️ 出勤双红线：单科缺勤 <b>&gt;30%</b> 或总缺勤 <b>&gt;25%</b> → 禁考并记 F（病假事假也算）。约缺 4 次即触线。学生证拍卡点名，严禁代刷。</p>
+    <p class="note" id="note"></p>
   </section>
-  <footer>数据源：SIS + 校历 + 迎新简报<br><span id="synced"></span> · 由 Claude 维护</footer>
+  <footer>数据源：SIS + Moodle + 邮箱 + 校历<br><span id="synced"></span><br><span id="updated"></span></footer>
 </div>
 <script>
-var CLASSES=[
+// ── 数据：优先读同目录 data.json（bot 持续更新），失败则用下面内嵌的默认值 ──
+var DEFAULT={
+ teach:{start:"2026-09-07",end:"2026-12-05"},
+ no_class:{"2026-10-01":"国庆停课"},
+ classes:[
  {dow:2,s:"09:00",e:"12:00",name:"RAI603 编程",who:"熊博士",room:"M02"},
  {dow:2,s:"12:30",e:"15:30",name:"RAI602 数学",who:"Dr.Zhu",room:"M02"},
  {dow:3,s:"09:30",e:"12:30",name:"RAI601 毕业设计",who:"Prof.Lo",room:"M02"},
  {dow:4,s:"09:00",e:"12:00",name:"RAI605 机器学习",who:"Dr.Tsang",room:"M02"},
  {dow:5,s:"09:00",e:"12:00",name:"RAI604 人工智能",who:"Dr.Yang",room:"M02"}
-];
-var TEACH_START="2026-09-07",TEACH_END="2026-12-05";
-var NO_CLASS={"2026-10-01":"国庆停课"};
-var EVENTS=[
+ ],
+ notices:[],
+ note:"⚠️ 出勤双红线：单科缺勤 >30% 或总缺勤 >25% → 禁考并记 F（病假事假也算）。约缺 4 次即触线。学生证拍卡点名，严禁代刷。",
+ events:[
  {d:"2026-09-08",type:"info",t:"秋季第一天上课",sub:"09:00 RAI603 · M02"},
  {d:"2026-09-12",type:"ddl",t:"⚡ 提交毕设导师志愿 + 改选截止",sub:"七选一：Lo/Hsung/Tsang/Zhu/Yang/Ng/Shen"},
  {d:"2026-09-30",type:"ddl",t:"Capstone 进度表 #01（预计）",sub:"第4周起每两周一交"},
@@ -129,15 +137,29 @@ var EVENTS=[
  {d:"2027-04-30",type:"info",t:"春季最后教学日",sub:""},
  {d:"2027-05-06",type:"win",t:"春季期末考试",sub:"5/6–5/17"},
  {d:"2027-05-31",type:"ddl",t:"Capstone 成果演示 + 最终交付",sub:"答辩季"}
-];
-var COUNTDOWNS=[
+ ],
+ countdowns:[
  {d:"2026-09-12",n:"导师志愿+改选"},
  {d:"2026-10-27",n:"数学期中"},
  {d:"2026-11-23",n:"春季选课"},
  {d:"2026-12-02",n:"Capstone 开题"},
  {d:"2026-12-10",n:"期末考试周"},
  {d:"2027-05-31",n:"毕设最终交付"}
-];
+ ]
+};
+var CLASSES,TEACH_START,TEACH_END,NO_CLASS,EVENTS,COUNTDOWNS,NOTICES,NOTE,UPDATED;
+function applyData(d){
+  CLASSES=d.classes||[];TEACH_START=(d.teach||{}).start||"";TEACH_END=(d.teach||{}).end||"";
+  NO_CLASS=d.no_class||{};EVENTS=d.events||[];COUNTDOWNS=d.countdowns||[];
+  NOTICES=d.notices||[];NOTE=d.note||"";UPDATED=d.updated||"";
+}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function loadRemote(){
+  if(location.protocol==="file:")return;
+  fetch("data.json?ts="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
+    if(d&&d.classes){applyData(d);render()}
+  }).catch(function(){});
+}
 function hkNow(){return new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Hong_Kong"}))}
 function ymd(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 function cnDow(d){return "日一二三四五六"[d.getDay()]}
@@ -176,13 +198,24 @@ function render(){
   var ch="";COUNTDOWNS.map(function(c){return{n:c.n,d:c.d,x:daysTo(c.d,now)}}).filter(function(c){return c.x>=0}).sort(function(a,b){return a.x-b.x}).forEach(function(c){
     ch+='<div class="cd"><div class="num'+(c.x<=7?' soon':'')+'">'+c.x+'<small>天</small></div><div class="lbl">'+c.n+'</div><div class="dt">'+c.d.replace(/-/g,"/")+'</div></div>'});
   document.getElementById("countdown").innerHTML=ch;
+  // 最新通知（bot 从 SIS / Moodle / 邮箱抓来，内容按不可信文本转义）
+  var ns=NOTICES.slice().sort(function(a,b){return (b.d||"")<(a.d||"")?-1:1}).slice(0,10),nh="";
+  ns.forEach(function(n){var fresh=daysTo(n.d,now)>=-3;
+    nh+='<div class="item'+(fresh?' live-row':'')+'"><div class="time">'+esc((n.d||"").slice(5).replace("-","/"))+'<small>'+esc(n.src||"")+'</small></div><div class="what"><b style="font-size:15px">'+(n.url?'<a href="'+esc(n.url)+'" style="color:inherit;text-decoration:none">'+esc(n.t)+'</a>':esc(n.t))+'</b>'+(n.sub?'<span>'+esc(n.sub)+'</span>':'')+'</div>'+(fresh?'<span class="pill p-win">新</span>':'')+'</div>'});
+  document.getElementById("sec-notices").hidden=!nh;document.getElementById("notices").innerHTML=nh;
+  document.getElementById("notice-count").textContent=ns.length?"· "+ns.length+" 条":"";
+  document.getElementById("note").innerHTML=esc(NOTE).replace(/(&gt;\d+%)/g,"<b>$1</b>");
+  document.getElementById("updated").textContent=UPDATED?"数据更新 "+UPDATED.replace("T"," ").slice(0,16):"";
   var dowName={2:"周二",3:"周三",4:"周四",5:"周五"};var curDow=dowMon(now);
   var tt="";CLASSES.forEach(function(c){tt+='<tr'+(c.dow===curDow?' class="now-row"':'')+'><td>'+dowName[c.dow]+'</td><td class="t">'+c.s+'–'+c.e+'</td><td>'+c.name+' · '+c.room+'</td><td>'+c.who+'</td></tr>'});
   document.getElementById("timetable").innerHTML=tt;
   document.getElementById("synced").textContent="页面时间 "+hhmm(now)+"（香港）";
 }
-render();
-setInterval(render,60000);
+applyData(DEFAULT);render();
+loadRemote();
+setInterval(render,60000);          // 每分钟按当前时间重算
+setInterval(loadRemote,10*60000);   // 每 10 分钟拉一次 data.json
+document.addEventListener("visibilitychange",function(){if(!document.hidden)loadRemote()});
 </script>
 </body>
 </html>
