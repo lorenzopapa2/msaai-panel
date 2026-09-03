@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MSAAI">
+<meta name="theme-color" content="#0F1613">
+<title>MSAAI 日程</title>
+<style>
+:root{
+  --bg:#0F1613; --card:#1A2621; --ink:#E9F1EE; --sub:#8FA39D; --line:#2A3833;
+  --accent:#4CC0A5; --accent-ink:#7FD8C4; --accent-soft:#12291F;
+  --warn:#E5A250; --warn-soft:#2E2413; --crit:#E8796A; --crit-soft:#33201C;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;
+  min-height:100dvh;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  -webkit-font-smoothing:antialiased;}
+.wrap{max-width:34rem;margin:0 auto;padding:22px 18px 60px;}
+.hero{padding:8px 4px 20px;border-bottom:1px solid var(--line);margin-bottom:22px;}
+.hero .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--accent);font-weight:700;text-transform:uppercase;}
+.hero .today{font-size:40px;font-weight:800;line-height:1.05;margin:6px 0 2px;letter-spacing:-.01em;}
+.hero .dow{font-size:16px;color:var(--sub);}
+.hero .live{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;padding:6px 13px;border-radius:999px;}
+.hero .live .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+section{margin-bottom:26px;}
+h2{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 12px 2px;font-weight:700;text-transform:uppercase;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;}
+.item{display:flex;gap:14px;padding:16px 17px;border-top:1px solid var(--line);align-items:flex-start;}
+.item:first-child{border-top:none}
+.item .time{flex:0 0 78px;font-variant-numeric:tabular-nums;font-weight:800;font-size:16px;color:var(--accent-ink);line-height:1.35}
+.item .time small{display:block;font-weight:500;color:var(--sub);font-size:13px}
+.item .what{flex:1;min-width:0}
+.item .what b{font-size:17px;display:block;line-height:1.35}
+.item .what span{color:var(--sub);font-size:14px;display:block;margin-top:2px}
+.item.live-row{background:var(--accent-soft)}
+.pill{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 10px;border-radius:999px;white-space:nowrap;margin-top:3px}
+.p-class{background:var(--accent-soft);color:var(--accent-ink)}
+.p-ddl{background:var(--crit-soft);color:var(--crit)}
+.p-win{background:var(--warn-soft);color:var(--warn)}
+.p-info{background:var(--line);color:var(--sub)}
+.empty{padding:22px 17px;color:var(--sub);font-size:15px;text-align:center}
+.urgent{border-color:var(--crit)}
+.cd-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.cd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 16px}
+.cd .num{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1;color:var(--accent-ink)}
+.cd .num.soon{color:var(--crit)}
+.cd .num small{font-size:14px;font-weight:700;margin-left:2px}
+.cd .lbl{font-size:13px;color:var(--sub);margin-top:7px;line-height:1.3}
+.cd .dt{font-size:11px;color:var(--sub);opacity:.7;font-variant-numeric:tabular-nums;margin-top:2px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{padding:11px 13px;text-align:left;border-top:1px solid var(--line)}
+.tbl thead th{border-top:none;font-size:11px;letter-spacing:.1em;color:var(--sub);font-weight:700}
+.tbl td.t{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--accent-ink);font-weight:700}
+.tbl tr.now-row td{background:var(--accent-soft)}
+.note{font-size:13px;color:var(--sub);margin:14px 4px 0;line-height:1.7}
+.note b{color:var(--crit)}
+footer{margin-top:34px;font-size:12px;color:var(--sub);text-align:center;line-height:1.8;opacity:.85}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">香港珠海学院 · 应用人工智能硕士</div>
+    <div class="today" id="today-date">—</div>
+    <div class="dow" id="today-dow">—</div>
+    <div id="live-wrap"></div>
+  </div>
+  <section id="sec-urgent" hidden>
+    <h2>🚨 必办 · 截止在即</h2>
+    <div class="card urgent" id="urgent"></div>
+  </section>
+  <section><h2>今天</h2><div class="card" id="today"></div></section>
+  <section><h2>明天 <span id="tmr-date" style="color:var(--sub);letter-spacing:0"></span></h2><div class="card" id="tomorrow"></div></section>
+  <section><h2>未来 7 天</h2><div class="card" id="week"></div></section>
+  <section><h2>关键倒计时</h2><div class="cd-grid" id="countdown"></div></section>
+  <section>
+    <h2>每周课表 · 2026 秋（9/7–12/5）</h2>
+    <div class="card" style="overflow-x:auto">
+      <table class="tbl">
+        <thead><tr><th>星期</th><th>时间</th><th>课程</th><th>老师</th></tr></thead>
+        <tbody id="timetable"></tbody>
+      </table>
+    </div>
+    <p class="note">⚠️ 出勤双红线：单科缺勤 <b>&gt;30%</b> 或总缺勤 <b>&gt;25%</b> → 禁考并记 F（病假事假也算）。约缺 4 次即触线。学生证拍卡点名，严禁代刷。</p>
+  </section>
+  <footer>数据源：SIS + 校历 + 迎新简报<br><span id="synced"></span> · 由 Claude 维护</footer>
+</div>
+<script>
+var CLASSES=[
+ {dow:2,s:"09:00",e:"12:00",name:"RAI603 编程",who:"熊博士",room:"M02"},
+ {dow:2,s:"12:30",e:"15:30",name:"RAI602 数学",who:"Dr.Zhu",room:"M02"},
+ {dow:3,s:"09:30",e:"12:30",name:"RAI601 毕业设计",who:"Prof.Lo",room:"M02"},
+ {dow:4,s:"09:00",e:"12:00",name:"RAI605 机器学习",who:"Dr.Tsang",room:"M02"},
+ {dow:5,s:"09:00",e:"12:00",name:"RAI604 人工智能",who:"Dr.Yang",room:"M02"}
+];
+var TEACH_START="2026-09-07",TEACH_END="2026-12-05";
+var NO_CLASS={"2026-10-01":"国庆停课"};
+var EVENTS=[
+ {d:"2026-09-08",type:"info",t:"秋季第一天上课",sub:"09:00 RAI603 · M02"},
+ {d:"2026-09-12",type:"ddl",t:"⚡ 提交毕设导师志愿 + 改选截止",sub:"七选一：Lo/Hsung/Tsang/Zhu/Yang/Ng/Shen"},
+ {d:"2026-09-30",type:"ddl",t:"Capstone 进度表 #01（预计）",sub:"第4周起每两周一交"},
+ {d:"2026-10-01",type:"info",t:"国庆假期 · 停课",sub:"周四机器学习停一次"},
+ {d:"2026-10-14",type:"ddl",t:"Capstone 进度表 #02（预计）",sub:""},
+ {d:"2026-10-20",type:"info",t:"79 周年校庆",sub:""},
+ {d:"2026-10-27",type:"ddl",t:"数学期中随堂测（预计·第8节）",sub:"RAI602 周二 12:30 · 以老师通知为准"},
+ {d:"2026-10-28",type:"ddl",t:"Capstone 进度表 #03（预计）",sub:""},
+ {d:"2026-11-11",type:"ddl",t:"Capstone 进度表 #04（预计）",sub:""},
+ {d:"2026-11-16",type:"win",t:"教学问卷调查周",sub:"11/16–11/21"},
+ {d:"2026-11-21",type:"info",t:"2026 资讯日",sub:""},
+ {d:"2026-11-23",type:"win",t:"⚡ 春季选修选课开始",sub:"11/23–12/4 · 8选3 · 先到先得"},
+ {d:"2026-11-25",type:"ddl",t:"Capstone 进度表 #05（预计）",sub:""},
+ {d:"2026-12-01",type:"win",t:"春季学期缴费注册",sub:"12/1–12/16"},
+ {d:"2026-12-02",type:"ddl",t:"🎤 Capstone 开题演示（第13周=期中考）",sub:"建议书展示+任务汇报+规划，直接计分"},
+ {d:"2026-12-05",type:"info",t:"秋季最后教学日",sub:""},
+ {d:"2026-12-10",type:"win",t:"期末考试周",sub:"12/10–12/19 · 时间表另行通知"},
+ {d:"2026-12-19",type:"info",t:"期末考试结束",sub:""},
+ {d:"2026-12-22",type:"info",t:"圣诞新年假期",sub:"至 1/1"},
+ {d:"2027-01-18",type:"info",t:"春季学期开始上课",sub:"1/18–1/23 学科改选"},
+ {d:"2027-02-04",type:"info",t:"农历新年假期",sub:"2/4–2/10"},
+ {d:"2027-04-30",type:"info",t:"春季最后教学日",sub:""},
+ {d:"2027-05-06",type:"win",t:"春季期末考试",sub:"5/6–5/17"},
+ {d:"2027-05-31",type:"ddl",t:"Capstone 成果演示 + 最终交付",sub:"答辩季"}
+];
+var COUNTDOWNS=[
+ {d:"2026-09-12",n:"导师志愿+改选"},
+ {d:"2026-10-27",n:"数学期中"},
+ {d:"2026-11-23",n:"春季选课"},
+ {d:"2026-12-02",n:"Capstone 开题"},
+ {d:"2026-12-10",n:"期末考试周"},
+ {d:"2027-05-31",n:"毕设最终交付"}
+];
+function hkNow(){return new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Hong_Kong"}))}
+function ymd(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function cnDow(d){return "日一二三四五六"[d.getDay()]}
+function dowMon(d){return d.getDay()===0?7:d.getDay()}
+function hhmm(n){return String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0")}
+function daysTo(ds,n){var t=new Date(ds+"T00:00:00");var m=new Date(n);m.setHours(0,0,0,0);return Math.round((t-m)/86400000)}
+function classesOn(d){var ds=ymd(d);if(ds<TEACH_START||ds>TEACH_END)return[];if(NO_CLASS[ds])return[];return CLASSES.filter(function(c){return c.dow===dowMon(d)})}
+function eventsOn(ds){return EVENTS.filter(function(e){return e.d===ds})}
+function pill(t){return t==="ddl"?'<span class="pill p-ddl">截止</span>':t==="win"?'<span class="pill p-win">窗口</span>':'<span class="pill p-info">提示</span>'}
+function render(){
+  var now=hkNow(),today=ymd(now);
+  document.getElementById("today-date").textContent=(now.getMonth()+1)+"月"+now.getDate()+"日";
+  document.getElementById("today-dow").textContent="星期"+cnDow(now);
+  var lw=document.getElementById("live-wrap");lw.innerHTML="";var hm=hhmm(now);
+  classesOn(now).forEach(function(c){if(hm>=c.s&&hm<=c.e){lw.innerHTML='<div class="live"><span class="dot"></span>正在上课 · '+c.name+' · '+c.room+'</div>'}});
+  var el=document.getElementById("today"),h="";
+  classesOn(now).forEach(function(c){var live=(hm>=c.s&&hm<=c.e);h+='<div class="item'+(live?' live-row':'')+'"><div class="time">'+c.s+'<small>'+c.e+'</small></div><div class="what"><b>'+c.name+'</b><span>'+c.room+' · '+c.who+(live?' · 进行中':'')+'</span></div><span class="pill p-class">上课</span></div>'});
+  eventsOn(today).forEach(function(e){h+='<div class="item"><div class="time">全天</div><div class="what"><b>'+e.t+'</b>'+(e.sub?'<span>'+e.sub+'</span>':'')+'</div>'+pill(e.type)+'</div>'});
+  el.innerHTML=h||'<div class="empty">'+(NO_CLASS[today]?"🎉 "+NO_CLASS[today]:"今天无课 · 自由支配（英语口语 1.5h 别断）")+'</div>';
+  var tmr=new Date(now);tmr.setDate(tmr.getDate()+1);
+  document.getElementById("tmr-date").textContent=(tmr.getMonth()+1)+"/"+tmr.getDate()+" 周"+cnDow(tmr);
+  var te=document.getElementById("tomorrow"),th="";
+  classesOn(tmr).forEach(function(c){th+='<div class="item"><div class="time">'+c.s+'<small>'+c.e+'</small></div><div class="what"><b>'+c.name+'</b><span>'+c.room+' · '+c.who+'</span></div><span class="pill p-class">上课</span></div>'});
+  eventsOn(ymd(tmr)).forEach(function(e){th+='<div class="item"><div class="time">全天</div><div class="what"><b>'+e.t+'</b>'+(e.sub?'<span>'+e.sub+'</span>':'')+'</div>'+pill(e.type)+'</div>'});
+  te.innerHTML=th||'<div class="empty">'+(NO_CLASS[ymd(tmr)]?"🎉 "+NO_CLASS[ymd(tmr)]:"明天无课")+'</div>';
+  var wk="";
+  for(var i=2;i<=7;i++){var d=new Date(now);d.setDate(d.getDate()+i);var ds=ymd(d),items=[];
+    classesOn(d).forEach(function(c){items.push({t:c.s+" "+c.name,sub:c.room+" · "+c.who,p:'<span class="pill p-class">课</span>'})});
+    eventsOn(ds).forEach(function(e){items.push({t:e.t,sub:e.sub,p:pill(e.type)})});
+    if(items.length){wk+='<div class="item"><div class="time">'+(d.getMonth()+1)+"/"+d.getDate()+'<small>周'+cnDow(d)+'</small></div><div class="what">';
+      items.forEach(function(it,idx){wk+='<b style="font-size:15px'+(idx>0?';margin-top:6px':'')+'">'+it.t+'</b>'+(it.sub?'<span>'+it.sub+'</span>':'')});
+      wk+='</div>'+items[0].p+'</div>'}}
+  document.getElementById("week").innerHTML=wk||'<div class="empty">未来一周无排期</div>';
+  var uh="";EVENTS.forEach(function(e){if(e.type!=="ddl")return;var df=daysTo(e.d,now);if(df>=0&&df<=3){uh+='<div class="item"><div class="time" style="color:var(--crit)">'+(df===0?"今天":df+" 天")+'</div><div class="what"><b>'+e.t+'</b>'+(e.sub?'<span>'+e.sub+'</span>':'')+'</div><span class="pill p-ddl">'+e.d.slice(5).replace("-","/")+'</span></div>'}});
+  if(uh){document.getElementById("sec-urgent").hidden=false;document.getElementById("urgent").innerHTML=uh}else{document.getElementById("sec-urgent").hidden=true}
+  var ch="";COUNTDOWNS.map(function(c){return{n:c.n,d:c.d,x:daysTo(c.d,now)}}).filter(function(c){return c.x>=0}).sort(function(a,b){return a.x-b.x}).forEach(function(c){
+    ch+='<div class="cd"><div class="num'+(c.x<=7?' soon':'')+'">'+c.x+'<small>天</small></div><div class="lbl">'+c.n+'</div><div class="dt">'+c.d.replace(/-/g,"/")+'</div></div>'});
+  document.getElementById("countdown").innerHTML=ch;
+  var dowName={2:"周二",3:"周三",4:"周四",5:"周五"};var curDow=dowMon(now);
+  var tt="";CLASSES.forEach(function(c){tt+='<tr'+(c.dow===curDow?' class="now-row"':'')+'><td>'+dowName[c.dow]+'</td><td class="t">'+c.s+'–'+c.e+'</td><td>'+c.name+' · '+c.room+'</td><td>'+c.who+'</td></tr>'});
+  document.getElementById("timetable").innerHTML=tt;
+  document.getElementById("synced").textContent="页面时间 "+hhmm(now)+"（香港）";
+}
+render();
+setInterval(render,60000);
+</script>
+</body>
+</html>
