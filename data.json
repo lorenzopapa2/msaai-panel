@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-05T08:07:15+08:00",
+  "updated": "2026-09-05T08:07:44+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -294,12 +294,6 @@
       "t": "Capstone 成果演示 + 最终交付",
       "sub": "答辩季",
       "src": "迎新日"
-    },
-    {
-      "d": "2026-09-10",
-      "t": "提交学生初步提案 is due (CAPSTONE PROJECT 2026-1",
-      "src": "Moodle",
-      "type": "ddl"
     }
   ],
   "countdowns": [
