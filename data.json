@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "updated": "2026-09-07T21:22:26+08:00",
-  "updated_by": "msaai-bot",
+  "updated": "2026-09-07T21:47:05+08:00",
+  "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
     "end": "2026-12-05",
@@ -351,6 +351,16 @@
     {
       "d": "2026-09-07",
       "t": "2627年度 学生助理招聘 AY2627 Student Helpers Rec",
+      "src": "邮件"
+    },
+    {
+      "d": "2026-09-07",
+      "t": "2627年度 學生助理招聘 AY2627 Student Helpers Rec",
+      "src": "邮件"
+    },
+    {
+      "d": "2026-09-07",
+      "t": "香港珠海學院體育校隊招募2026/27 Recruitment of Hong ",
       "src": "邮件"
     },
     {
