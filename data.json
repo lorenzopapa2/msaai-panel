@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-09T13:45:46+08:00",
+  "updated": "2026-09-09T17:33:54+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -353,6 +353,11 @@
     {
       "d": "2026-09-09",
       "t": "香港珠海学院升旗隊招募 Hong Kong Chu Hai College Fl",
+      "src": "邮件"
+    },
+    {
+      "d": "2026-09-09",
+      "t": "Application for “Student Residential Hal",
       "src": "邮件"
     },
     {
