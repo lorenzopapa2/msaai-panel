@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-09T17:33:54+08:00",
+  "updated": "2026-09-09T17:34:10+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -357,7 +357,7 @@
     },
     {
       "d": "2026-09-09",
-      "t": "Application for “Student Residential Hal",
+      "t": "申请学生宿舍2026/27",
       "src": "邮件"
     },
     {
