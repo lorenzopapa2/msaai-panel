@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-11T14:44:18+08:00",
+  "updated": "2026-09-11T14:45:00+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -347,7 +347,12 @@
   "notices": [
     {
       "d": "2026-09-11",
-      "t": "[Library] Begell-House and Bookboon Priz",
+      "t": "查看图书馆新增佛学开放数据库",
+      "src": "邮件"
+    },
+    {
+      "d": "2026-09-11",
+      "t": "参加图书馆Begell有奖测验",
       "src": "邮件"
     },
     {
