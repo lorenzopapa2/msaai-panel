@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-11T12:44:22+08:00",
+  "updated": "2026-09-11T14:44:18+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -345,6 +345,11 @@
     }
   ],
   "notices": [
+    {
+      "d": "2026-09-11",
+      "t": "[Library] Begell-House and Bookboon Priz",
+      "src": "邮件"
+    },
     {
       "d": "2026-09-09",
       "t": "参加学院迎新日活动2026-2027",
