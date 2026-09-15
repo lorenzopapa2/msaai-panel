@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-15T18:09:32+08:00",
+  "updated": "2026-09-15T18:09:50+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -391,7 +391,7 @@
     },
     {
       "d": "2026-09-15",
-      "t": "Election of Postgraduate Student Represe",
+      "t": "查看研究生院务会学生代表选举",
       "src": "邮件"
     },
     {
