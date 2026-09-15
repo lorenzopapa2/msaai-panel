@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-15T15:51:45+08:00",
+  "updated": "2026-09-15T18:09:32+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -387,6 +387,11 @@
     {
       "d": "2026-09-15",
       "t": "[Last Opportunity! 最後機會!] 領取香港珠海学院迎新大禮包 ",
+      "src": "邮件"
+    },
+    {
+      "d": "2026-09-15",
+      "t": "Election of Postgraduate Student Represe",
       "src": "邮件"
     },
     {
