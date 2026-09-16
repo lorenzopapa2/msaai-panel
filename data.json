@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-16T14:20:13+08:00",
+  "updated": "2026-09-16T14:37:27+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -390,6 +390,11 @@
       "src": "邮件"
     },
     {
+      "d": "2026-09-16",
+      "t": "[SAO] 了解自己的精神健康狀態 To Know Your Mental He",
+      "src": "邮件"
+    },
+    {
       "d": "2026-09-15",
       "t": "[SAO] 履歷寫作技巧工作坊 24 Sep 2026",
       "src": "邮件"
@@ -534,12 +539,6 @@
       "d": "2026-09-03",
       "src": "邮件",
       "t": "M层健身室开放时间有调整",
-      "url": "https://outlook.office.com/mail/"
-    },
-    {
-      "d": "2026-09-02",
-      "src": "邮件",
-      "t": "SAO 合拼画迎新工作坊",
       "url": "https://outlook.office.com/mail/"
     }
   ],
