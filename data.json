@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-17T13:35:10+08:00",
+  "updated": "2026-09-17T14:16:03+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -414,6 +414,11 @@
   "notices": [
     {
       "d": "2026-09-17",
+      "t": "[Library 图书馆] Book exhibition – Folklore",
+      "src": "邮件"
+    },
+    {
+      "d": "2026-09-17",
       "t": "毕业设计的第一次工作会议",
       "src": "邮件"
     },
@@ -560,13 +565,6 @@
       "t": "毕设教师提案已上线",
       "sub": "Moodle RAI601 · 分配导师后约 4 周交修订版提案",
       "url": "https://elearning.chuhai.edu.hk/mod/resource/view.php?id=80309"
-    },
-    {
-      "d": "2026-09-04",
-      "src": "邮件",
-      "t": "迎新PPT已上Moodle，缺席需签两份声明",
-      "sub": "版权授权+独创性声明，分完组再交导师",
-      "url": "https://elearning.chuhai.edu.hk/course/view.php?id=9344"
     }
   ],
   "note": "⚠️ 出勤双红线：单科缺勤 >30% 或总缺勤 >25% → 禁考并记 F（病假事假也算）。约缺 4 次即触线。学生证拍卡点名，严禁代刷。"
