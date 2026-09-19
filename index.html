@@ -64,6 +64,30 @@ h2{font-size:12px;letter-spacing:.16em;color:var(--accent);margin:0 0 12px 2px;f
 .note{font-size:13px;color:var(--sub);margin:14px 4px 0;line-height:1.7}
 .note b{color:var(--crit)}
 footer{margin-top:34px;font-size:12px;color:var(--sub);text-align:center;line-height:1.8;opacity:.85}
+/* ── 月历 ── */
+.cal{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 10px 10px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin:0 4px 10px}
+.cal-head b{font-size:18px;font-weight:800;letter-spacing:.02em}
+.cal-nav{display:flex;gap:6px}
+.cal-nav button{background:var(--line);color:var(--ink);border:none;border-radius:10px;padding:7px 13px;font-size:14px;font-weight:700;font-family:inherit}
+.cal-nav button.tdy{background:var(--accent-soft);color:var(--accent-ink)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{font-size:11px;color:var(--sub);text-align:center;padding:2px 0 6px;font-weight:700}
+.cal-dow.we{color:var(--warn);opacity:.8}
+.cal-cell{min-height:62px;border-radius:10px;padding:4px 3px 3px;background:var(--bg);border:1.5px solid transparent;cursor:pointer;overflow:hidden}
+.cal-cell.other{opacity:.28}
+.cal-cell.today{border-color:var(--accent)}
+.cal-cell.sel{background:var(--accent-soft)}
+.cal-cell.hol .cal-n{color:var(--warn)}
+.cal-cell.past{opacity:.55}
+.cal-cell.past.sel,.cal-cell.past.today{opacity:1}
+.cal-n{font-size:13px;font-weight:800;text-align:right;line-height:1;margin-bottom:3px;font-variant-numeric:tabular-nums}
+.ch{display:block;font-size:9.5px;font-weight:800;line-height:1.4;border-radius:4px;padding:0 3px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-style:normal}
+.c601{background:#1e3648;color:#8fd0ff}.c602{background:#352b47;color:#d1b3ff}.c603{background:#12291F;color:#7FD8C4}.c604{background:#3a3119;color:#ffd27a}.c605{background:#1b3733;color:#7fe0d0}
+.e-ddl{background:var(--crit-soft);color:var(--crit)}.e-win{background:var(--warn-soft);color:var(--warn)}.e-info{background:var(--line);color:var(--sub)}.e-hol{background:var(--warn-soft);color:var(--warn)}
+.cal-legend{font-size:11px;color:var(--sub);margin:10px 4px 0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.cal-legend i{font-style:normal;font-weight:800;border-radius:4px;padding:0 5px;font-size:10px}
+#cal-detail{margin-top:10px}
 </style>
 </head>
 <body>
@@ -85,6 +109,15 @@ footer{margin-top:34px;font-size:12px;color:var(--sub);text-align:center;line-he
   <section><h2>今天</h2><div class="card" id="today"></div></section>
   <section><h2>明天 <span id="tmr-date" style="color:var(--sub);letter-spacing:0"></span></h2><div class="card" id="tomorrow"></div></section>
   <section><h2>未来 7 天</h2><div class="card" id="week"></div></section>
+  <section>
+    <h2>📅 月历 · 点一天看详情</h2>
+    <div class="cal">
+      <div class="cal-head"><b id="cal-title">—</b><div class="cal-nav"><button id="cal-prev">‹</button><button id="cal-today" class="tdy">今天</button><button id="cal-next">›</button></div></div>
+      <div class="cal-grid" id="cal-grid"></div>
+      <div class="cal-legend"><i class="c603">603</i>编程 <i class="c602">602</i>数学 <i class="c601">601</i>毕设 <i class="c605">605</i>机器学习 <i class="c604">604</i>人工智能 <i class="e-ddl">截止</i> <i class="e-win">窗口</i> <i class="e-hol">假期</i></div>
+    </div>
+    <div class="card" id="cal-detail"></div>
+  </section>
   <section><h2>关键倒计时</h2><div class="cd-grid" id="countdown"></div></section>
   <section>
     <h2>每周课表 · 2026 秋（9/7–12/5）</h2>
@@ -210,7 +243,38 @@ function render(){
   var tt="";CLASSES.forEach(function(c){tt+='<tr'+(c.dow===curDow?' class="now-row"':'')+'><td>'+dowName[c.dow]+'</td><td class="t">'+c.s+'–'+c.e+'</td><td>'+c.name+' · '+c.room+'</td><td>'+c.who+'</td></tr>'});
   document.getElementById("timetable").innerHTML=tt;
   document.getElementById("synced").textContent="页面时间 "+hhmm(now)+"（香港）";
+  renderCal();
 }
+// ── 月历 ──
+var CAL={y:0,m:0,sel:""};
+function shortEv(t){return String(t).replace(/^[^\p{L}\p{N}]+/u,"").split(/[（(·:：—]/)[0].slice(0,6)}
+function codeOf(name){var m=/RAI(\d{3})/.exec(name);return m?m[1]:"601"}
+function renderCal(){
+  var now=hkNow(),today=ymd(now);
+  if(!CAL.y){CAL.y=now.getFullYear();CAL.m=now.getMonth();CAL.sel=today}
+  document.getElementById("cal-title").textContent=CAL.y+" 年 "+(CAL.m+1)+" 月";
+  var first=new Date(CAL.y,CAL.m,1),start=new Date(first);start.setDate(1-(dowMon(first)-1));
+  var h="";"一二三四五六日".split("").forEach(function(w,i){h+='<div class="cal-dow'+(i>=5?' we':'')+'">'+w+'</div>'});
+  for(var i=0;i<42;i++){var d=new Date(start);d.setDate(start.getDate()+i);var ds=ymd(d);
+    if(i>=35&&d.getMonth()!==CAL.m)break;
+    var cls="cal-cell";if(d.getMonth()!==CAL.m)cls+=" other";if(ds===today)cls+=" today";if(ds===CAL.sel)cls+=" sel";if(NO_CLASS[ds])cls+=" hol";if(ds<today)cls+=" past";
+    var chips=[];
+    if(NO_CLASS[ds])chips.push('<i class="ch e-hol">'+esc(NO_CLASS[ds]).slice(0,5)+'</i>');
+    classesOn(d).forEach(function(c){var k=codeOf(c.name);chips.push('<i class="ch c'+k+'">'+k+' '+c.s.slice(0,2)+'点</i>')});
+    eventsOn(ds).forEach(function(e){chips.push('<i class="ch e-'+(e.type==="ddl"?"ddl":e.type==="win"?"win":"info")+'">'+esc(shortEv(e.t))+'</i>')});
+    var extra=chips.length>3?chips.length-3:0;if(extra)chips=chips.slice(0,3);
+    h+='<div class="'+cls+'" data-d="'+ds+'"><div class="cal-n">'+d.getDate()+'</div>'+chips.join("")+(extra?'<i class="ch e-info">+'+extra+'</i>':'')+'</div>'}
+  var g=document.getElementById("cal-grid");g.innerHTML=h;
+  g.querySelectorAll(".cal-cell").forEach(function(c){c.onclick=function(){CAL.sel=c.getAttribute("data-d");var dd=new Date(CAL.sel+"T00:00:00");CAL.y=dd.getFullYear();CAL.m=dd.getMonth();renderCal()}});
+  var sd=new Date(CAL.sel+"T00:00:00"),dh="",items=0;
+  var head='<div class="item" style="background:var(--accent-soft)"><div class="time">'+(sd.getMonth()+1)+"/"+sd.getDate()+'<small>周'+cnDow(sd)+'</small></div><div class="what"><b>'+(CAL.sel===today?"今天":daysTo(CAL.sel,now)>0?daysTo(CAL.sel,now)+" 天后":(-daysTo(CAL.sel,now))+" 天前")+'</b>'+(NO_CLASS[CAL.sel]?'<span>🎉 '+esc(NO_CLASS[CAL.sel])+'</span>':'')+'</div></div>';
+  classesOn(sd).forEach(function(c){items++;dh+='<div class="item"><div class="time">'+c.s+'<small>'+c.e+'</small></div><div class="what"><b>'+c.name+'</b><span>'+c.room+' · '+c.who+'</span></div><span class="pill p-class">上课</span></div>'});
+  eventsOn(CAL.sel).forEach(function(e){items++;dh+='<div class="item"><div class="time">全天</div><div class="what"><b>'+esc(e.t)+'</b>'+(e.sub?'<span>'+esc(e.sub)+'</span>':'')+'</div>'+pill(e.type)+'</div>'});
+  document.getElementById("cal-detail").innerHTML=head+(dh||'<div class="empty">'+(NO_CLASS[CAL.sel]?"放假，无课":"这天没有课也没有事项")+'</div>');
+}
+document.getElementById("cal-prev").onclick=function(){CAL.m--;if(CAL.m<0){CAL.m=11;CAL.y--}renderCal()};
+document.getElementById("cal-next").onclick=function(){CAL.m++;if(CAL.m>11){CAL.m=0;CAL.y++}renderCal()};
+document.getElementById("cal-today").onclick=function(){var n=hkNow();CAL.y=n.getFullYear();CAL.m=n.getMonth();CAL.sel=ymd(n);renderCal()};
 applyData(DEFAULT);render();
 loadRemote();
 setInterval(render,60000);          // 每分钟按当前时间重算
