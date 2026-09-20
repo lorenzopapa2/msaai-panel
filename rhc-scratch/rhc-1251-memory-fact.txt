@@ -1,0 +1,1 @@
+RHC ~12:51–13:08 HKT 2026-09-20 QUIET — no NEW 过线/埋伏. Snapshot /workspace/rhc-scan-20260920-1251.md BASE_NEXT /workspace/rhc-1251-base-next.json. Closest: MIM too_young gecko~$85.5k soft~1.0; FOMOEGG already_埋伏 LIVE~$88.6k soft~0.61× (no escalate); DIB/PEQ/AD no escalate; FOMOEGG clone; IMIN override; MINTY already_过线. GECKO yes hits=3 fails=0.
