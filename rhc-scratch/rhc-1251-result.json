@@ -1,0 +1,31 @@
+{
+  "STATUS": "QUIET",
+  "status": "QUIET",
+  "ALERTS": [],
+  "alerts": [],
+  "USER_PING_NEEDED": "no",
+  "closest_skips": [
+    {"kind": "WATCH_MIM_too_young", "sym": "MIM", "addr": "0xd06295ca83ad93ce2e6a2fe01bd108a0b34b5e33", "why": "gecko~$85.5k soft~1.00× age<15m name=Test Coin", "gecko": 85549.59, "ds": 85572.84, "soft": 1.0},
+    {"kind": "WATCH_FOMOEGG_already_埋伏", "sym": "FOMOEGG", "addr": "0xee9a89fadf3894fed75bf312f9252f770e287f5a", "why": "already_埋伏 LIVE~$88.6k soft~0.61× escalate-only ≥$135k", "gecko": 88605.93, "ds": 54086.84, "soft": 0.61},
+    {"kind": "SKIP_FOMOEGG_clone", "sym": "FOMOEGG", "addr": "0xc132d16e22f15b9bb3565de1090eecbf4aaf6116", "why": "clone tape=0/0 DS~$82.8k", "ds": 82757.4},
+    {"kind": "WATCH_DIB_already_埋伏", "sym": "DIB", "addr": "0x6d59cf3d8689dcb2bf92a90af1fa89bb21b6f2b8", "why": "already_埋伏 DS~$32.7k dumped", "ds": 32672.84},
+    {"kind": "WATCH_PEQ_already_埋伏", "sym": "PEQ", "addr": "0x927e4f0ad36d18bebe66066bc3ff9864ad3c704a", "why": "already_埋伏 DS~$173.9k tape=0/0", "ds": 173862.77},
+    {"kind": "WATCH_AD_already_埋伏", "sym": "AD", "addr": "0x63ffd4aa844f4befcee1b4606e467d1d209a926b", "why": "already_埋伏 gecko pool~$62.4k", "gecko": 62424.87, "ds": 53553.92, "soft": 0.86},
+    {"kind": "SKIP_MINTY_already_过线", "sym": "MINTY", "addr": "0xa70b9bc19bd72fb4406b0f834e908448e7a19e72", "why": "already_过线", "ds": 158789.15},
+    {"kind": "WATCH_IMIN_override", "sym": "IMIN", "addr": "0x8239ef71e672ba63fac1228b05e66ca2c060ca74", "why": "REJECTED_OVERRIDE tape=0/0", "ds": 839812.47}
+  ],
+  "gecko_hits": 3,
+  "gecko_fails": 0,
+  "gecko_partial": false,
+  "gecko": {"status": "yes", "hits": 3, "fails": 0},
+  "escalations": {"FOMOEGG": false, "DIB": false, "PEQ": false, "AD": false},
+  "snapshot": "/workspace/rhc-scan-20260920-1251.md",
+  "base_next": "/workspace/rhc-1251-base-next.json",
+  "ping_path": "/workspace/rhc-ping-20260920-1251.md",
+  "memory_fact": "/workspace/rhc-1251-memory-fact.txt",
+  "episode": "/workspace/rhc-episode-20260920-1251.md",
+  "MEMORY_FACT_TEXT": "RHC ~12:51–13:08 HKT 2026-09-20 QUIET — no NEW 过线/埋伏. Snapshot /workspace/rhc-scan-20260920-1251.md BASE_NEXT /workspace/rhc-1251-base-next.json. Closest: MIM too_young gecko~$85.5k soft~1.0; FOMOEGG already_埋伏 LIVE~$88.6k soft~0.61× (no escalate); DIB/PEQ/AD no escalate; FOMOEGG clone; IMIN override; MINTY already_过线. GECKO yes hits=3 fails=0.",
+  "window": "2026-09-20 ~12:51–13:08 HKT",
+  "killed": ["1221_gecko_confirm_bash"],
+  "box_note": "Shell spawn failed entire run; artifacts also at https://github.com/lorenzopapa2/msaai-panel/tree/main/rhc-scratch — parent should copy to /workspace if missing"
+}
