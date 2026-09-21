@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-21T10:16:02+08:00",
+  "updated": "2026-09-21T10:16:19+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -539,7 +539,7 @@
   "notices": [
     {
       "d": "2026-09-21",
-      "t": "[SAO] 人际關係系列工作坊 Interpersonal Relationsh",
+      "t": "报名人际关系系列工作坊",
       "src": "邮件"
     },
     {
