@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-21T09:09:31+08:00",
+  "updated": "2026-09-21T10:16:02+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -537,6 +537,11 @@
     }
   ],
   "notices": [
+    {
+      "d": "2026-09-21",
+      "t": "[SAO] 人际關係系列工作坊 Interpersonal Relationsh",
+      "src": "邮件"
+    },
     {
       "d": "2026-09-17",
       "t": "[Library 图书馆] Book exhibition – Folklore",
