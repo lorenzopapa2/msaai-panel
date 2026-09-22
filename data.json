@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "updated": "2026-09-22T11:38:51+08:00",
-  "updated_by": "grok-bot",
+  "updated": "2026-09-22T11:40:36+08:00",
+  "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
     "end": "2026-12-05",
@@ -188,13 +188,6 @@
       "src": "Moodle",
       "importance": 2,
       "sub": "9/23 00:00 截止 = 9/22 晚前交 · zip RAI603-A1-姓名-学号（源码+截图+签名AI声明表）"
-    },
-    {
-      "d": "2026-09-28",
-      "t": "作业1",
-      "type": "ddl",
-      "src": "Moodle",
-      "importance": 2
     },
     {
       "d": "2026-09-29",
