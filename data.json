@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-23T09:29:50+08:00",
+  "updated": "2026-09-23T12:06:37+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -550,6 +550,11 @@
       "src": "邮件"
     },
     {
+      "d": "2026-09-23",
+      "t": "Student Affairs Office",
+      "src": "邮件"
+    },
+    {
       "d": "2026-09-22",
       "t": "Dept J&C: Invitation to Film Screening o",
       "src": "邮件"
@@ -708,12 +713,6 @@
     {
       "d": "2026-09-09",
       "t": "香港珠海学院升旗隊招募 Hong Kong Chu Hai College Fl",
-      "src": "邮件",
-      "url": ""
-    },
-    {
-      "d": "2026-09-09",
-      "t": "申请学生宿舍2026/27",
       "src": "邮件",
       "url": ""
     }
