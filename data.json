@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "updated": "2026-10-06T10:25:00+08:00",
+ "updated": "2026-10-06T12:26:00+08:00",
  "updated_by": "grok-bot",
  "teach": {
   "start": "2026-09-07",
@@ -603,6 +603,12 @@
   }
  ],
  "notices": [
+  {
+   "d": "2026-10-06",
+   "t": "[SAO] 學生事務處心理輔導服務 / Counselling Service at Student Affairs Office",
+   "src": "邮件",
+   "url": ""
+  },
   {
    "d": "2026-10-06",
    "t": "[圖書館] ProQuest數據庫培訓工作坊 / ProQuest training workshop（10/6）",
