@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-07T09:55:00+08:00",
+  "updated": "2026-10-07T15:45:00+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -603,6 +603,12 @@
     }
   ],
   "notices": [
+    {
+      "d": "2026-10-07",
+      "t": "[圖書館] ProQuest 培訓工作坊（10/6）視頻回放連結 / ProQuest Training workshop video recording",
+      "src": "邮件",
+      "url": ""
+    },
     {
       "d": "2026-10-07",
       "t": "[圖書館] 華藝學術引用文獻資料庫和華藝線上圖書館培訓工作坊 / ACI and Airiti Library training workshop（10/13）",
