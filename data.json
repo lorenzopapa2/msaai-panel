@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-07T16:18:00+08:00",
+  "updated": "2026-10-07T16:53:00+08:00",
   "updated_by": "grok-bot",
   "teach": {
     "start": "2026-09-07",
@@ -603,6 +603,12 @@
     }
   ],
   "notices": [
+    {
+      "d": "2026-10-07",
+      "t": "[Career] The New HKCHC Career Portal is Now LIVE!",
+      "src": "邮件",
+      "url": ""
+    },
     {
       "d": "2026-10-07",
       "t": "[SAO] 職場新鮮人理財攻略 / Financial Planning Guide for Freshmen",
