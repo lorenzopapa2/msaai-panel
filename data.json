@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-14T10:58:20+08:00",
+  "updated": "2026-10-14T12:54:18+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -545,6 +545,30 @@
     }
   ],
   "notices": [
+    {
+      "d": "2026-09-30",
+      "src": "邮件",
+      "t": "[SAO] [溫馨提示] SAO 秋季儲物櫃申請最後今天[Friendly Re",
+      "url": ""
+    },
+    {
+      "d": "2026-10-05",
+      "src": "邮件",
+      "t": "[邮件] English Speaking Workshop 英語會話工作坊",
+      "url": ""
+    },
+    {
+      "d": "2026-10-06",
+      "src": "邮件",
+      "t": "[Library] Reminder: [Library 圖書館] ProQue",
+      "url": ""
+    },
+    {
+      "d": "2026-10-14",
+      "src": "邮件",
+      "t": "[Library] [圖書館 Library] 2026年10月13日 華藝學術",
+      "url": ""
+    },
     {
       "d": "2026-10-14",
       "src": "邮件",
