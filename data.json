@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-14T12:55:45+08:00",
+  "updated": "2026-10-14T16:50:12+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -545,6 +545,18 @@
     }
   ],
   "notices": [
+    {
+      "d": "2026-10-14",
+      "src": "邮件",
+      "t": "[SAO] 「學生組織2026/27」現正接受申請 Applications f",
+      "url": ""
+    },
+    {
+      "d": "2026-10-14",
+      "src": "邮件",
+      "t": "[邮件] Invitation: BRI in Africa: Opportun",
+      "url": ""
+    },
     {
       "d": "2026-10-14",
       "src": "邮件",
