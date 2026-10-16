@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-15T17:22:45+08:00",
+  "updated": "2026-10-16T11:55:17+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -577,6 +577,12 @@
     }
   ],
   "notices": [
+    {
+      "d": "2026-10-16",
+      "src": "邮件",
+      "t": "[邮件] Congratulations to Dr. WU Wei on In",
+      "url": ""
+    },
     {
       "d": "2026-10-15",
       "src": "邮件",
