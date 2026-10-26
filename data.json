@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-26T10:25:00+08:00",
+  "updated": "2026-10-26T18:50:00+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -585,6 +585,12 @@
     }
   ],
   "notices": [
+    {
+      "d": "2026-10-26",
+      "src": "邮件",
+      "t": "[SAO] 海洋生態展覽遊戲攤位及手作工作坊 / Marine Ecology Exhibition Game Booths & Handicraft Workshop",
+      "url": ""
+    },
     {
       "d": "2026-10-26",
       "src": "邮件",
