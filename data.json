@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-26T18:50:00+08:00",
+  "updated": "2026-11-03T14:30:00+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -343,6 +343,14 @@
       "src": "Moodle",
       "importance": 2,
       "sub": "RAI605 机器学习 · Moodle 11/05 23:59 截止"
+    },
+    {
+      "d": "2026-11-07",
+      "t": "中期报告评分表（上午班 / 下午班）",
+      "type": "ddl",
+      "src": "Moodle",
+      "importance": 2,
+      "sub": "RAI604 人工智能 · Moodle 11/07 00:00 截止"
     },
     {
       "d": "2026-11-11",
