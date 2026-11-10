@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-09T14:17:47+08:00",
+  "updated": "2026-11-10T21:20:51+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -602,6 +602,24 @@
   ],
   "notices": [
     {
+      "d": "2026-11-10",
+      "src": "邮件",
+      "t": "[obor] 誠邀出席｜中國反壟斷法與行政執法系列活動（11月17日、18日）",
+      "url": ""
+    },
+    {
+      "d": "2026-11-10",
+      "src": "邮件",
+      "t": "[SAO] 退休策劃好幫手",
+      "url": ""
+    },
+    {
+      "d": "2026-11-10",
+      "src": "邮件",
+      "t": "[英文系] GE Seminar: Expressive Arts and Mindfulness for Everyday Wellbeing",
+      "url": ""
+    },
+    {
       "d": "2026-11-09",
       "src": "邮件",
       "t": "[Invitation]: Second International Conference on “Rethinking International Relat",
@@ -821,24 +839,6 @@
       "d": "2026-10-06",
       "t": "Prof. Thomas Chan 讲座邀请：Georgia-Hong Kong",
       "src": "邮件",
-      "url": ""
-    },
-    {
-      "d": "2026-10-06",
-      "t": "[SAO] 學生事務處心理輔導服務 / Counselling Service ",
-      "src": "邮件",
-      "url": ""
-    },
-    {
-      "d": "2026-10-05",
-      "t": "香港珠海學院佛學研究中心、江茂森圖書館每逢週五舉辦【靜心 ‧ 抄經 】活動，歡迎",
-      "src": "邮件",
-      "url": ""
-    },
-    {
-      "d": "2026-10-05",
-      "src": "邮件",
-      "t": "Join the I&E Platform Information Sessio",
       "url": ""
     }
   ],
