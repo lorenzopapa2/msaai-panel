@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-11T15:27:47+08:00",
+  "updated": "2026-11-12T01:04:37+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -604,6 +604,18 @@
     {
       "d": "2026-11-11",
       "src": "邮件",
+      "t": "Announcement: Election Results for Postgraduate Representative on the Academic Board AY2026/27",
+      "url": ""
+    },
+    {
+      "d": "2026-11-11",
+      "src": "邮件",
+      "t": "[邮件] 毕业设计的第四次工作会议 (2026年11月14日)",
+      "url": ""
+    },
+    {
+      "d": "2026-11-11",
+      "src": "邮件",
       "t": "[SAO] 漢方美容工作坊 Traditional Chinese Herbal Beauty Workshop",
       "url": ""
     },
@@ -826,18 +838,6 @@
     {
       "d": "2026-10-09",
       "t": "[PE] 跑步訓練計劃溫馨提示 / Running Program friend",
-      "src": "邮件",
-      "url": ""
-    },
-    {
-      "d": "2026-10-07",
-      "t": "[Career] The New HKCHC Career Portal is ",
-      "src": "邮件",
-      "url": ""
-    },
-    {
-      "d": "2026-10-07",
-      "t": "[SAO] 職場新鮮人理財攻略 / Financial Planning Gui",
       "src": "邮件",
       "url": ""
     }
