@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-12T15:22:00+08:00",
+  "updated": "2026-11-12T16:54:12+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -604,6 +604,12 @@
     {
       "d": "2026-11-12",
       "src": "邮件",
+      "t": "邀請出席 2026/27年度 秋季學期 學生諮詢大會 (線上)",
+      "url": ""
+    },
+    {
+      "d": "2026-11-12",
+      "src": "邮件",
       "t": "[SAO] International Cultural Discovery 國際文化探索",
       "url": ""
     },
@@ -833,12 +839,6 @@
       "d": "2026-10-06",
       "src": "邮件",
       "t": "[圖書館] ProQuest數據庫培訓工作坊 / ProQuest traini",
-      "url": ""
-    },
-    {
-      "d": "2026-10-13",
-      "src": "邮件",
-      "t": "[obor/Jason PANG] First International Co",
       "url": ""
     }
   ],
