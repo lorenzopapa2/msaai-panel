@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-12T01:04:37+08:00",
+  "updated": "2026-11-12T15:22:00+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -602,6 +602,18 @@
   ],
   "notices": [
     {
+      "d": "2026-11-12",
+      "src": "邮件",
+      "t": "[SAO] International Cultural Discovery 國際文化探索",
+      "url": ""
+    },
+    {
+      "d": "2026-11-12",
+      "src": "邮件",
+      "t": "[SAO] 一餐的距離：香港貧窮與食物援助 x 愛心食物募集 The Distance of a Meal: Poverty & Food Aid x Food Drive",
+      "url": ""
+    },
+    {
       "d": "2026-11-11",
       "src": "邮件",
       "t": "Announcement: Election Results for Postgraduate Representative on the Academic Board AY2026/27",
@@ -827,18 +839,6 @@
       "d": "2026-10-13",
       "src": "邮件",
       "t": "[obor/Jason PANG] First International Co",
-      "url": ""
-    },
-    {
-      "d": "2026-10-09",
-      "t": "[SAO] 手繪套娃娃工作坊 / Hand-painted Russian Do",
-      "src": "邮件",
-      "url": ""
-    },
-    {
-      "d": "2026-10-09",
-      "t": "[PE] 跑步訓練計劃溫馨提示 / Running Program friend",
-      "src": "邮件",
       "url": ""
     }
   ],
