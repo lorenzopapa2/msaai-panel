@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-12T16:54:12+08:00",
+  "updated": "2026-11-14T07:29:12+08:00",
   "updated_by": "msaai-bot",
   "teach": {
     "start": "2026-09-07",
@@ -379,7 +379,7 @@
       "type": "ddl",
       "src": "Moodle",
       "importance": 2,
-      "sub": "RAI601 毕业设计 · Moodle 11/16 00:00 截止"
+      "sub": "RAI601 毕业设计 · Moodle 11/16 00:00 截止 · 已交"
     },
     {
       "d": "2026-11-21",
